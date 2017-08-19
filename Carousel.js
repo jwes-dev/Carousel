@@ -1,6 +1,6 @@
 var SlideShows = {
-    
-    slideShow: function (Slides, slideInterval){
+
+    slideShow: function (Slides, slideInterval) {
         this.slideIndex = -1;
         this.slides = Slides;
         this.isPlaying = true;
@@ -8,8 +8,7 @@ var SlideShows = {
         this.interval = slideInterval;
 
         this.pause = function () {
-            if(this.isPlaying)
-            {
+            if (this.isPlaying) {
                 clearInterval(this.timing);
                 this.isPlaying = false;
             }
@@ -25,8 +24,6 @@ var SlideShows = {
         }.bind(this);
 
         this.play = function () {
-            if (this.isPlaying)
-                return;
             this.intervalFunction();
             this.timing = setInterval(this.intervalFunction, this.interval);
             this.isPlaying = true;
