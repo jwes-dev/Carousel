@@ -1,5 +1,3 @@
-//Image slide show
-
 var SlideShows = {
     
     slideShow: function (Slides, slideInterval){
@@ -27,11 +25,11 @@ var SlideShows = {
         }.bind(this);
 
         this.play = function () {
+            if (this.isPlaying)
+                return;
             this.intervalFunction();
             this.timing = setInterval(this.intervalFunction, this.interval);
             this.isPlaying = true;
         }.bind(this);
-
-        this.play();
     }
 };
