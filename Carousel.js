@@ -1,6 +1,8 @@
 var SlideShows = {
 
     slideShow: function (Slides, slideInterval) {
+        $(Slides[0]).parent().css({ overflow: "hidden" });
+        $(Slides).css({'position': 'absolute'});
         this.slideIndex = -1;
         this.slides = Slides;
         this.isPlaying = true;
@@ -15,16 +17,20 @@ var SlideShows = {
         };
 
         this.intervalFunction = function () {
-            $(this.slides[this.slideIndex]).fadeOut(500);
-            this.slideIndex++;
-            if (this.slideIndex >= this.slides.length) { this.slideIndex = 0 }
-            setTimeout(function () {
-                $(this.slides[this.slideIndex]).fadeIn(this.interval / 3);
-            }.bind(this), this.interval / 6);
+            $(this.slides[this.slideIndex]).fadeOut(this.interval / 2);
+            this.slideIndex = (this.slideIndex + 1) % this.slides.length;
+            $(this.slides[this.slideIndex]).fadeIn(this.interval / 2);
         }.bind(this);
 
         this.play = function () {
-            this.intervalFunction();
+            this.slideIndex = (this.slideIndex + 1) % this.slides.length;
+            try {
+                $(this.slides[this.slideIndex]).removeClass("anim-fadeout");
+                $(this.slides[this.slideIndex]).addClass("anim-fadein");
+            }
+            catch (e) {
+
+            }
             this.timing = setInterval(this.intervalFunction, this.interval);
             this.isPlaying = true;
         }.bind(this);
