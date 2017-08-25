@@ -25,8 +25,7 @@ var SlideShows = {
         this.play = function () {
             this.slideIndex = (this.slideIndex + 1) % this.slides.length;
             try {
-                $(this.slides[this.slideIndex]).removeClass("anim-fadeout");
-                $(this.slides[this.slideIndex]).addClass("anim-fadein");
+                $(this.slides[this.slideIndex]).fadeIn(this.interval / 2);
             }
             catch (e) {
 
